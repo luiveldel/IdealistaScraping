@@ -41,10 +41,10 @@ def parse_df(df):
     return df[['price', 'size', 'rooms', 'bathrooms', 'district', 'neighborhood']].astype({"price":int,"size":int})
 
 def get_csv(df):
-    return df.to_csv('houses.csv', index=False)
+    return df.to_csv('export/houses.csv', index=False)
 
 def get_excel(df):
-    return df.to_excel('houses.xlsx', index=False)
+    return df.to_excel('export/houses.xlsx', index=False)
 
 def main():
     token = json.loads(get_auth(creds.API_KEY, creds.API_SECRET, creds.OATH_URL))
