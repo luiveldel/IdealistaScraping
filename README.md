@@ -1,4 +1,4 @@
-## ![MarineGEO circle logo](https://st3.idealista.com/static/common/img/idealista.svg) API 🏘️
+## ![MarineGEO circle logo](https://img.europapress.es/fotoweb/fotonoticia_20220118143634_1200.jpg) API 🏘️
 
 La finalidad de este script en Python es hacer consultas a la API de Idealista para extraer un archivo JSON y un archivo XLSX. 
 
