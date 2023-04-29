@@ -34,7 +34,7 @@ La aplicación volcará en la carpeta `export` los ficheros de salida:
 La API devuelve información de las siguientes propiedades 
 
 | Nombre | Unidad | Tipo |
-| --- | --- | --- | --- | 
+| --- | --- | --- |
 | price | precio en Euros | int |
 | size | tamaño en m2 | int |
 | rooms | # habitaciones | int |
