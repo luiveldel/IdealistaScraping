@@ -22,7 +22,7 @@ $ python main.py
 
 ## Salida
 
-La aplicación volcará en la carpeta `export` los ficheros de salida:
+La aplicación volcará en la carpeta `output` los ficheros de salida:
 *   xlsx
 *   csv
 
