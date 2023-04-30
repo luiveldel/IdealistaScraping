@@ -29,7 +29,7 @@ La aplicación volcará en la carpeta `output` los ficheros de salida:
 ### Notas: 
 
 *   Los formatos de salida no son excluyentes pudiéndose generar a la vez.
-*   La `API\_KEY` y la `API\_SECRET` no se encuentran en el código si no que se proporcinan en la ejecución.
+*   La `API_KEY` y la `API_SECRET` no se encuentran en el código si no que se proporcinan en la ejecución.
 
 La API devuelve información de las siguientes propiedades 
 

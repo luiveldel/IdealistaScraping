@@ -3,6 +3,9 @@ import creds
 import json
 from requests.auth import HTTPBasicAuth
 import pandas as pd
+from cachetools import cached, TTLCache
+
+cache = TTLCache(maxsize=100, ttl=300)  # create a cache with a maximum of 100 entries and a time-to-live (TTL) of 300 seconds (5 minutes)
 
 # Define here the criteria
 loc = '37.3653401,-5.9878376' # Seville coordenates
@@ -20,8 +23,14 @@ def get_auth(key, secret, oathurl):
     r = requests.post(oathurl,
                     auth=HTTPBasicAuth(key, secret),
                     data=payload)
-    return r.text
+    # If the request fails, we print an error message.
+    if r.status_code == 200:
+        print(f"API credentials successfully retrieved from {oathurl}")
+        return r.text
+    else:
+        raise Exception(f"API request failed with status code {r.status_code}")
 
+@cached(cache)  # will cache the results of the function
 def create_session(token):
     """
     With our token in base64 we can create a session to access the API
@@ -47,9 +56,16 @@ def get_excel(df):
     return df.to_excel('output/houses.xlsx', index=False)
 
 def main():
-    token = json.loads(get_auth(creds.API_KEY, creds.API_SECRET, creds.OATH_URL))
-    sess = create_session(token['access_token'])
-    resp = sess.post(creds.BASE_URL + "?center={0}&operation={1}&propertyType={2}&country={3}&maxItems=50&distance={4}".format(loc,op,ptype,country,dist))
+    # Error handling
+    try:
+        token = json.loads(get_auth(creds.API_KEY, creds.API_SECRET, creds.OATH_URL))
+        sess = create_session(token['access_token'])
+        resp = sess.post(creds.BASE_URL + "?center={0}&operation={1}&propertyType={2}&country={3}&maxItems=50&distance={4}".format(loc,op,ptype,country,dist))
+    except requests.exceptions.HTTPError as error:
+        print(f"HTTP error occurred: {error}")
+    except Exception as error:
+        print(f"Other error occurred: {error}")
+        
     search_response = json.loads(resp.text)
     dataframe = get_df(search_response)
     df_final = parse_df(dataframe)

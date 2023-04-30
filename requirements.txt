@@ -1,3 +1,4 @@
 requests == 2.22.0
 pandas == 2.0.0
 openpyxl == 3.1.2
+cachetools == 5.3.0
