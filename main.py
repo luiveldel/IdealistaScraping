@@ -2,8 +2,8 @@
 import requests
 import json
 from requests.auth import HTTPBasicAuth
-import pandas as pd
 from cachetools import cached, TTLCache
+import configparser
 
 # Modules from 'app' package
 import app.creds as creds
@@ -12,8 +12,8 @@ from app.houseparser import HouseDataParser
 
 cache = TTLCache(maxsize=100, ttl=300)  # create a cache with a maximum of 100 entries and a time-to-live (TTL) of 300 seconds (5 minutes)
 
-# Define here the criteria
-loc = '37.3653401,-5.9878376' # Seville coordenates
+# Reading criteria
+oc = '37.3653401,-5.9878376' # Seville coordenates
 op = 'sale'
 ptype = 'homes'
 country = 'es'
