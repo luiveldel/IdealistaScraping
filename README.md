@@ -10,7 +10,7 @@ Para conseguir acceso a la API hay que solicitarla en el siguiente enlace: [http
 
 ## Ejecución
 
-Se recomienda instalar primero los requerimientos:
+Para instalar los requerimientos:
 ```
 python -m pip install -r requirements.txt
 ```
@@ -25,6 +25,7 @@ $ python main.py
 La aplicación volcará en la carpeta `output` los ficheros de salida:
 *   xlsx
 *   csv
+*   base de datos sqlite (v0.2.0)
 
 ### Notas: 
 
