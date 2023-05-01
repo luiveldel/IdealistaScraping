@@ -25,7 +25,7 @@ $ python main.py
 La aplicación volcará en la carpeta `output` los ficheros de salida:
 *   xlsx
 *   csv
-*   base de datos sqlite (v0.2.0)
+*   base de datos en sqlite
 
 ### Notas: 
 
