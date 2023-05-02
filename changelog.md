@@ -1,8 +1,8 @@
 # Change Log File
 Todos los cambios hechos se adjuntan en este fichero.
 
-## [0.2.0] - Second Release 01-05-2023
-- Soporte para base de datos SQLite
+## [0.2.0] - 01-05-2023
+- Soporte para formato de salida como base de datos SQLite
 - Paquete 'app' pasa a albergar este modulo de base de datos SQLite y los futuros
 
 ## [0.1.0] - Initial Release 29-04-2023

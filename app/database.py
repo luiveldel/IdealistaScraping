@@ -3,6 +3,9 @@ import os
 
 class ApiDatabase:
     
+    api_key: str
+    db_path: str
+    
     def __init__(self, api_key, db_path):
         self.api_key = api_key
         if db_path is None:

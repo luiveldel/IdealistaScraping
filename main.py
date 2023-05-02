@@ -12,13 +12,18 @@ from app.houseparser import HouseDataParser
 
 cache = TTLCache(maxsize=100, ttl=300)  # create a cache with a maximum of 100 entries and a time-to-live (TTL) of 300 seconds (5 minutes)
 
-# Reading criteria
-oc = '37.3653401,-5.9878376' # Seville coordenates
-op = 'sale'
-ptype = 'homes'
-country = 'es'
-dist = '5000' #in meters from centre
+def read_filter_params(file_path):
+    
+    with open('filters.json') as f:
+        filters = json.load(f)
 
+    loc = filters['location'] # Seville coordenates
+    op = filters['operation'] # (required) possible values: sale, rent
+    ptype = filters['property_type'] # (required) possible values: homes, offices, premises, garages, bedrooms
+    country = filters['country'] # (required) possible values: es, it, pt
+    dist = filters['distance_from_center'] # distance to center, in metres (ratio)
+
+    return loc, op, ptype, country, dist
 
 def get_auth(key, secret, oathurl):
     """
@@ -62,6 +67,7 @@ def main():
     try:
         token = json.loads(get_auth(creds.API_KEY, creds.API_SECRET, creds.OATH_URL))
         sess = create_session(token['access_token'])
+        loc, op, ptype, country, dist = read_filter_params('filters.json')
         resp = sess.post(creds.BASE_URL + "?center={0}&operation={1}&propertyType={2}&country={3}&maxItems=50&distance={4}".format(loc,op,ptype,country,dist))
         search_response = json.loads(resp.text)
         house_parser = HouseDataParser(search_response)
